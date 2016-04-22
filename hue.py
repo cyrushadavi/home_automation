@@ -2,6 +2,7 @@ from beautifulhue.api import Bridge
 import time
 from random import choice
 import config
+import flask
 
 config_dict = config.get_dict_of_params()
 
@@ -57,13 +58,33 @@ def blue_party():
         time.sleep(1)
 
 
-def toggle_living_room(state=True):
-    resource = {
-        'which': 0,
-        'data': {
-            'action': {
-                'on': state
+
+def toggle_living_room():
+    resource = {'which':0}
+    state = bridge.group.get(resource)['resource']['action']['on']
+    state =  not state
+    if isinstance(state,bool):
+        resource = {
+            'which': 0,
+            'data': {
+                'action': {
+                    'on': state
+                }
             }
         }
-    }
-    bridge.group.update(resource)
+        bridge.group.update(resource)
+        resource = {
+            'which': 4,
+            'data': {
+                'state': {
+                    'on': state
+                }
+            }
+        }
+    if state:
+        return_text = 'On'
+    else:
+        return_text = 'Off'
+    return flask.jsonify(state=return_text)
+
+
