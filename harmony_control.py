@@ -12,7 +12,6 @@ def watch_tv(parser):
     args.email=config_dict['harmony_email']
     args.harmony_ip=config_dict['harmony_ip']
     args.harmony_port=5222
-    args.loglevel='INFO'
     args.password=config_dict['harmony_password']
     harmony.start_activity(args)
 
@@ -21,7 +20,6 @@ def watch_fire_tv(parser):
     args.email=config_dict['harmony_email']
     args.harmony_ip=config_dict['harmony_ip']
     args.harmony_port=5222
-    args.loglevel='INFO'
     args.password=config_dict['harmony_password']
     harmony.start_activity(args)
 
@@ -30,7 +28,6 @@ def turn_off():
     args.email=config_dict['harmony_email']
     args.harmony_ip=config_dict['harmony_ip']
     args.harmony_port=5222
-    args.loglevel='INFO'
     args.password=config_dict['harmony_password']
     harmony.start_activity(args)
 
