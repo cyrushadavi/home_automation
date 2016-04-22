@@ -30,5 +30,3 @@ def turn_off():
     args.harmony_port=5222
     args.password=config_dict['harmony_password']
     harmony.start_activity(args)
-
-turn_off()
