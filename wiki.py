@@ -2,6 +2,7 @@ __author__ = 'Cyrus'
 import text_to_speech
 import wikipedia
 
+
 def read_wikipedia_entry(text):
     try:
         text_to_speech.read(wikipedia.summary(text))

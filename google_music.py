@@ -8,9 +8,10 @@ api.login(config_dict['gmail'], config_dict['gmail_password'], Mobileclient.FROM
 
 library = api.get_all_songs()
 
+
 def get_songs_by_artist(artist='Alice in Chains'):
     toPlay = [track['id'] for track in library
-                       if track['artist'] == artist]
+              if track['artist'] == artist]
     return toPlay
 
 

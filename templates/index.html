@@ -2,39 +2,81 @@
 <html>
 <head>
     <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js"></script>
     <script type=text/javascript>
-
+        $(function () {
+            $(document).ready(function () {
+                $.getJSON('/load', '', function (data) {
+                    console.log(data)
+                    $("#lights_title").html(String(data.state));
+                    $("#lights").addClass('fg-' + String(data.color));
+                })
+            });
+        })
         $(function () {
             $('#lights').bind('click', function () {
                 $.getJSON('/lights', '', function (data) {
                     console.log(data)
-                    $("#lights").html(String(data.state));
+                    console.log('fg-' + String(data.oldcolor))
+                    $("#lights_title").html(String(data.state));
+                    $("#lights").removeClass('fg-' + String(data.old_color));
+                    $("#lights").addClass('fg-' + String(data.color));
                 })
             })
         })
+        $(function () {
+            $('#party').bind('click', function () {
+                $.getJSON('/party', '', function (data) {
+                    console.log(data)
 
+                    $("#lights_title").html('PARTY');
+                    $("#party").removeClass('fg-green');
+                    $("#party").addClass('fg-yellow');
+                })
+            })
+        })
 
     </script>
     <style>
         body {
             background: black; /* color */
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-<button class="shortcut-button bg-cyan bg-active-darkBlue fg-white" id="lights">
-    <span class="icon settings-power"></span>
-    <span class="title" id="lights">Off</span>
-</button>
-<button class="shortcut-button bg-cyan bg-active-darkBlue fg-white">
-    <span class="icon mif-rocket"></span>
-    <span class="title">Party</span>
-</button>
-<button class="shortcut-button bg-cyan bg-active-darkBlue fg-white">
-    <span class="icon mif-rocket"></span>
-    <span class="title">TV</span>
-</button>
+<div class="grid">
+    <div class="row">
+        <h1 color="'white">Cyrus's Home</h1>
+    </div>
+    <div class="row">
+        <div class="row cells3">
+            <div class="cell">
+                <div class="tile-large bg-blue" id="lights">
+                    <span class="icon mif-settings-power mif-4x"></span>
+                    <span class="title" id="lights_title"></span>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="tile-large bg-green bg-active-darkBlue fg-white" id="party">
+                    <span class="icon mif-rocket  mif-4x"></span>
+                    <span class="title" id="party_title">Party</span>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="tile-large bg-cyan bg-active-darkBlue fg-white">
+                    <span class="icon mif-play  mif-4x"></span>
+                    <span class="title">TV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

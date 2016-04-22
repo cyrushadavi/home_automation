@@ -7,7 +7,6 @@ import time
 import sleekxmpp
 from sleekxmpp.xmlstream import ET
 
-
 LOGGER = logging.getLogger(__name__)
 
 
@@ -112,7 +111,8 @@ class HarmonyClient(sleekxmpp.ClientXMPP):
         action_cmd.attrib['xmlns'] = 'connect.logitech.com'
         action_cmd.attrib['mime'] = (
             'vnd.logitech.harmony/vnd.logitech.harmony.engine?holdAction')
-        action_cmd.text = 'action={"type"::"IRCommand","deviceId"::"'+str(device_id)+'","command"::"'+command+'"}:status=press'
+        action_cmd.text = 'action={"type"::"IRCommand","deviceId"::"' + str(
+            device_id) + '","command"::"' + command + '"}:status=press'
         iq_cmd.set_payload(action_cmd)
         result = iq_cmd.send(block=False)
         # FIXME: This is an ugly hack, we need to follow the actual
@@ -133,6 +133,7 @@ class HarmonyClient(sleekxmpp.ClientXMPP):
             print "OFF"
             self.start_activity(-1)
         return True
+
 
 def create_and_connect_client(ip_address, port, token):
     """Creates a Harmony client and initializes session.

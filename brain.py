@@ -4,6 +4,7 @@ import speech_recognition as sr
 
 config_dict = config.get_dict_of_params()
 
+
 class Brain(object):
     def __init__(self, mic, profile):
         """
@@ -21,9 +22,10 @@ class Brain(object):
         self.profile = profile
         self.get_modules()
 
+
 passive = True
 while passive == True:
     r = sr.Recognizer()
     with sr.Microphone() as source:
         audio = r.listen(source)
-        text = r.recognize_wit(audio,config_dict['wit_token'])
+        text = r.recognize_wit(audio, config_dict['wit_token'])
