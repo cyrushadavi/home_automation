@@ -17,6 +17,19 @@ def blue_party():
         #val = choice([(0,0),(.25,0),(.1,.1),(.5,.3),(.7,.7),(.25,0),(.167,.04)])
         brightness =  choice([150,255])
         resource = {
+            'which': 4,
+            'data': {
+                'state': {
+                    'on': True,
+                    'xy': choice([(0,0),(.25,0),(.1,.1),(.5,.3),(.7,.7),(.25,0),(.167,.04)]),#val,
+                    # 'sat':
+                    'bri': brightness
+                }
+            }
+        }
+        bridge.light.update(resource)
+        time.sleep(.2)
+        resource = {
             'which': 2,
             'data': {
                 'state': {
@@ -42,7 +55,6 @@ def blue_party():
         }
         bridge.light.update(resource)
         time.sleep(1)
-        #print val
 
 
 def toggle_living_room(state=True):
@@ -55,5 +67,3 @@ def toggle_living_room(state=True):
         }
     }
     bridge.group.update(resource)
-
-
