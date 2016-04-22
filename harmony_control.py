@@ -7,7 +7,7 @@ import argparse
 config_dict = config.get_dict_of_params()
 args = argparse.Namespace()
 
-def watch_tv(parser):
+def watch_tv():
     args.activity='watch tv'
     args.email=config_dict['harmony_email']
     args.harmony_ip=config_dict['harmony_ip']
@@ -15,7 +15,7 @@ def watch_tv(parser):
     args.password=config_dict['harmony_password']
     harmony.start_activity(args)
 
-def watch_fire_tv(parser):
+def watch_fire_tv():
     args.activity='watch fire tv'
     args.email=config_dict['harmony_email']
     args.harmony_ip=config_dict['harmony_ip']
